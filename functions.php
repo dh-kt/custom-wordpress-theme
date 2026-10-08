@@ -1,5 +1,42 @@
 <?php
 /**
+ * Register Equipment custom post type.
+ */
+function my_spec_register_equipment_post_type() {
+
+    $labels = array(
+        'name'          => 'Equipment',
+        'singular_name' => 'Equipment',
+        'menu_name'     => 'Equipment',
+        'add_new'       => 'Add New',
+        'add_new_item'  => 'Add New Equipment',
+        'edit_item'     => 'Edit Equipment',
+        'new_item'      => 'New Equipment',
+        'view_item'     => 'View Equipment',
+        'search_items'  => 'Search Equipment',
+        'not_found'     => 'No equipment found',
+    );
+
+    $args = array(
+        'labels'       => $labels,
+        'public'       => true,
+        'has_archive'  => true,
+        'show_in_rest' => true,
+        'menu_icon'    => 'dashicons-hammer',
+        'supports'     => array(
+            'title',
+            'editor',
+            'thumbnail',
+            'excerpt'
+        ),
+    );
+
+    register_post_type('equipment', $args);
+}
+
+add_action('init', 'my_spec_register_equipment_post_type');
+
+/**
  * Register a custom REST API endpoint for equipment
  * This allows external apps (like our AI agent) to get equipment data
  */
