@@ -1,27 +1,42 @@
-# Hi, I'm DhaBa 👋
+# Custom WordPress Equipment Theme
 
-I'm a Developer specializing in custom themes and CMS integration. My goal is to build efficient, user-friendly web solutions.
+A custom responsive WordPress theme developed from a static design for an equipment rental website.
 
-### 🛠️ Skills & Technologies
-*   **CMS:** WordPress
-*   **Languages/Frameworks:** PHP, HTML5, CSS3, Bootstrap 5
-*   **Databases:** MySQL
-*   **Other:** Git, FTP, Responsive Design
+The project demonstrates converting a front-end design into a dynamic WordPress solution with reusable theme components, responsive layouts, and content management through WordPress.
 
-### 🚀 Featured Project: Custom WordPress Equipment Theme
-This was a complete project where I converted a static design into a fully functional WordPress theme.
-*   **Live Site:** [https://ch758099-wordpress-3d699.tw1.ru/](https://ch758099-wordpress-3d699.tw1.ru/)
-*   **The Challenge:** To create a dynamic equipment catalog for a rental company that is easy for staff to manage.
-*   **My Solution:** I built a custom theme using Bootstrap 5, created a custom post type for equipment, and integrated it with a WordPress admin panel for easy content management.
-*   **Key Features:**
-    *   Responsive header and navigation.
-    *   Dynamic carousel slider.
-    *   Equipment catalog with individual pages.
-    *   Full admin control over content.
+## Project Overview
 
-### 📂 More Projects
+The goal was to transform a static website design into a functional WordPress theme that allows equipment content to be managed through the WordPress administration interface.
 
+The project combines custom PHP theme development with responsive front-end design.
 
-### 📫 Connect with Me
-*  [ [Your LinkedIn Profile URL]](https://www.linkedin.com/in/dhaba-tolasa/)
-*   [(Add any other relevant links)](https://www.facebook.com/dhaba.tolasa)
+## Key Features
+
+- Custom WordPress theme development
+- Responsive navigation and page layout
+- Dynamic equipment catalog
+- Individual equipment pages
+- Carousel/slider functionality
+- WordPress-based content management
+- Reusable header and footer components
+- Responsive design using Bootstrap 5
+
+## Technologies
+
+- WordPress
+- PHP
+- HTML5
+- CSS3
+- Bootstrap 5
+- MySQL
+- Git
+
+## Repository Structure
+
+```text
+custom-wordpress-theme/
+├── header.php
+├── footer.php
+├── index.php
+├── style.css
+└── README.md
