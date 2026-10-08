@@ -37,6 +37,154 @@ function my_spec_register_equipment_post_type() {
 add_action('init', 'my_spec_register_equipment_post_type');
 
 /**
+ * Add custom fields for Equipment.
+ */
+function my_spec_add_equipment_meta_boxes() {
+    add_meta_box(
+        'equipment_details',
+        'Equipment Details',
+        'my_spec_equipment_meta_box_callback',
+        'equipment',
+        'normal',
+        'default'
+    );
+}
+
+add_action('add_meta_boxes', 'my_spec_add_equipment_meta_boxes');
+
+
+function my_spec_equipment_meta_box_callback($post) {
+
+    wp_nonce_field(
+        'my_spec_save_equipment_details',
+        'my_spec_equipment_nonce'
+    );
+
+    $price = get_post_meta($post->ID, '_equipment_price', true);
+    $availability = get_post_meta(
+        $post->ID,
+        '_equipment_availability',
+        true
+    );
+    ?>
+
+    <p>
+        <label for="equipment_price">
+            <strong>Price per hour</strong>
+        </label>
+        <br>
+
+        <input
+            type="number"
+            id="equipment_price"
+            name="equipment_price"
+            value="<?php echo esc_attr($price); ?>"
+            min="0"
+            step="1"
+        >
+    </p>
+
+    <p>
+        <label for="equipment_availability">
+            <strong>Availability</strong>
+        </label>
+        <br>
+
+        <select
+            id="equipment_availability"
+            name="equipment_availability"
+        >
+            <option
+                value="В наличии"
+                <?php selected($availability, 'В наличии'); ?>
+            >
+                В наличии
+            </option>
+
+            <option
+                value="Под заказ"
+                <?php selected($availability, 'Под заказ'); ?>
+            >
+                Под заказ
+            </option>
+
+            <option
+                value="Недоступно"
+                <?php selected($availability, 'Недоступно'); ?>
+            >
+                Недоступно
+            </option>
+        </select>
+    </p>
+
+    <?php
+}
+
+/**
+ * Save Equipment custom fields.
+ */
+function my_spec_save_equipment_details($post_id) {
+
+    // Verify nonce.
+    if (
+        ! isset($_POST['my_spec_equipment_nonce']) ||
+        ! wp_verify_nonce(
+            $_POST['my_spec_equipment_nonce'],
+            'my_spec_save_equipment_details'
+        )
+    ) {
+        return;
+    }
+
+    // Prevent saving during autosave.
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return;
+    }
+
+    // Check user permissions.
+    if (! current_user_can('edit_post', $post_id)) {
+        return;
+    }
+
+    // Save price.
+    if (isset($_POST['equipment_price'])) {
+        update_post_meta(
+            $post_id,
+            '_equipment_price',
+            absint($_POST['equipment_price'])
+        );
+    }
+
+    // Save availability.
+    if (isset($_POST['equipment_availability'])) {
+
+        $allowed_values = array(
+            'В наличии',
+            'Под заказ',
+            'Недоступно'
+        );
+
+        $availability = sanitize_text_field(
+            $_POST['equipment_availability']
+        );
+
+        if (in_array($availability, $allowed_values, true)) {
+            update_post_meta(
+                $post_id,
+                '_equipment_availability',
+                $availability
+            );
+        }
+    }
+}
+
+add_action(
+    'save_post_equipment',
+    'my_spec_save_equipment_details'
+);
+
+
+/**
  * Register a custom REST API endpoint for equipment
  * This allows external apps (like our AI agent) to get equipment data
  */
@@ -79,8 +227,17 @@ function get_equipment_data() {
                 'id' => get_the_ID(),
                 'name' => get_the_title(),
                 'description' => wp_trim_words(get_the_content(), 20),
-                'price' => 2500, // You can replace with ACF field later
-                'availability' => 'В наличии', // You can replace with ACF field later
+                'price' => (int) get_post_meta(
+                    get_the_ID(),
+                    '_equipment_price',
+                    true
+                ),
+                
+                'availability' => get_post_meta(
+                    get_the_ID(),
+                    '_equipment_availability',
+                    true
+                ),
                 'image_url' => $image_url ? $image_url : null,
                 'permalink' => get_permalink()
             );
@@ -97,4 +254,3 @@ function get_equipment_data() {
         'data' => $equipment_data
     ), 200);
 }
-?>
