@@ -61,109 +61,109 @@
         
         <div class="row g-4">
            <?php
-$equipment_query = new WP_Query(array(
-    'post_type'      => 'equipment',
-    'post_status'    => 'publish',
-    'posts_per_page' => 4
-));
-
-if ($equipment_query->have_posts()) :
-    while ($equipment_query->have_posts()) :
-        $equipment_query->the_post();
-
-        $price = get_post_meta(
-            get_the_ID(),
-            '_equipment_price',
-            true
-        );
-
-        $availability = get_post_meta(
-            get_the_ID(),
-            '_equipment_availability',
-            true
-        );
-?>
-
-<div class="col-12 col-sm-6 col-lg-3">
-    <div class="card h-100 shadow-sm">
-
-        <?php if (has_post_thumbnail()) : ?>
-
-            <?php
-            the_post_thumbnail(
-                'medium',
-                array('class' => 'card-img-top')
-            );
-            ?>
-
-        <?php else : ?>
-
-            <div
-                class="card-img-top text-center py-5 bg-light"
-                style="font-size: 80px;"
-            >
-                🚜
-            </div>
-
-        <?php endif; ?>
-
-        <div class="card-body">
-
-            <h5 class="card-title">
-                <?php the_title(); ?>
-            </h5>
-
-            <p class="card-text text-muted">
-                <?php echo esc_html(get_the_excerpt()); ?>
-            </p>
-
-            <?php if ($price !== '') : ?>
-
-                <p class="fw-bold text-success">
-                    от
-                    <?php echo esc_html(
-                        number_format_i18n((int) $price)
-                    ); ?>
-                    ₽/час
-                </p>
-
-            <?php endif; ?>
-
-            <div class="d-flex justify-content-between align-items-center">
-
-                <?php if ($availability !== '') : ?>
-
-                    <span class="badge bg-warning text-dark">
-                        <?php echo esc_html($availability); ?>
-                    </span>
-
+                $equipment_query = new WP_Query(array(
+                    'post_type'      => 'equipment',
+                    'post_status'    => 'publish',
+                    'posts_per_page' => 4
+                ));
+                
+                if ($equipment_query->have_posts()) :
+                    while ($equipment_query->have_posts()) :
+                        $equipment_query->the_post();
+                
+                        $price = get_post_meta(
+                            get_the_ID(),
+                            '_equipment_price',
+                            true
+                        );
+                
+                        $availability = get_post_meta(
+                            get_the_ID(),
+                            '_equipment_availability',
+                            true
+                        );
+                ?>
+                
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="card h-100 shadow-sm">
+                
+                        <?php if (has_post_thumbnail()) : ?>
+                
+                            <?php
+                            the_post_thumbnail(
+                                'medium',
+                                array('class' => 'card-img-top')
+                            );
+                            ?>
+                
+                        <?php else : ?>
+                
+                            <div
+                                class="card-img-top text-center py-5 bg-light"
+                                style="font-size: 80px;"
+                            >
+                                🚜
+                            </div>
+                
+                        <?php endif; ?>
+                
+                        <div class="card-body">
+                
+                            <h5 class="card-title">
+                                <?php the_title(); ?>
+                            </h5>
+                
+                            <p class="card-text text-muted">
+                                <?php echo esc_html(get_the_excerpt()); ?>
+                            </p>
+                
+                            <?php if ($price !== '') : ?>
+                
+                                <p class="fw-bold text-success">
+                                    от
+                                    <?php echo esc_html(
+                                        number_format_i18n((int) $price)
+                                    ); ?>
+                                    ₽/час
+                                </p>
+                
+                            <?php endif; ?>
+                
+                            <div class="d-flex justify-content-between align-items-center">
+                
+                                <?php if ($availability !== '') : ?>
+                
+                                    <span class="badge bg-warning text-dark">
+                                        <?php echo esc_html($availability); ?>
+                                    </span>
+                
+                                <?php endif; ?>
+                
+                                <?php echo esc_url(get_permalink()); ?>                    class="btn btn-sm btn-outline-warning"
+                                >
+                                    Подробнее
+                                </a>
+                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <?php
+                    endwhile;
+                
+                    wp_reset_postdata();
+                
+                else :
+                ?>
+                
+                <div class="col-12">
+                    <p class="text-center">
+                        Техника пока не добавлена.
+                    </p>
+                </div>
+                
                 <?php endif; ?>
-
-                <?php echo esc_url(get_permalink()); ?>                    class="btn btn-sm btn-outline-warning"
-                >
-                    Подробнее
-                </a>
-
-            </div>
-        </div>
-    </div>
-</div>
-
-<?php
-    endwhile;
-
-    wp_reset_postdata();
-
-else :
-?>
-
-<div class="col-12">
-    <p class="text-center">
-        Техника пока не добавлена.
-    </p>
-</div>
-
-<?php endif; ?>
         </div>
         
         <!-- View All Button -->
