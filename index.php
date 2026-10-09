@@ -139,10 +139,10 @@
                 
                                 <?php endif; ?>
                 
-                                <?php echo esc_url(get_permalink()); ?>                    class="btn btn-sm btn-outline-warning"
-                                >
-                                    Подробнее
-                                </a>
+                                <?php echo esc_url(get_permalink()); ?>    class="btn btn-sm btn-outline-warning"
+                                   >
+                                       Подробнее
+                                   </a>
                 
                             </div>
                         </div>
