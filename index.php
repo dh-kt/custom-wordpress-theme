@@ -60,77 +60,110 @@
         <h2 class="text-center mb-4">Популярная спецтехника</h2>
         
         <div class="row g-4">
-            <!-- Card 1 -->
-            <div class="col-12 col-sm-6 col-lg-3">
-                <div class="card h-100 shadow-sm">
-                    <div class="card-img-top text-center py-5 bg-light" style="font-size: 80px;">
-                        🚜
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Экскаватор E-200</h5>
-                        <p class="card-text text-muted">Грузоподъемность: 2т</p>
-                        <p class="fw-bold text-success">от 2 500 ₽/час</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <span class="badge bg-warning text-dark">В наличии</span>
-                            <a href="#" class="btn btn-sm btn-outline-warning">Подробнее</a>
-                        </div>
-                    </div>
-                </div>
+           <?php
+$equipment_query = new WP_Query(array(
+    'post_type'      => 'equipment',
+    'post_status'    => 'publish',
+    'posts_per_page' => 4
+));
+
+if ($equipment_query->have_posts()) :
+    while ($equipment_query->have_posts()) :
+        $equipment_query->the_post();
+
+        $price = get_post_meta(
+            get_the_ID(),
+            '_equipment_price',
+            true
+        );
+
+        $availability = get_post_meta(
+            get_the_ID(),
+            '_equipment_availability',
+            true
+        );
+?>
+
+<div class="col-12 col-sm-6 col-lg-3">
+    <div class="card h-100 shadow-sm">
+
+        <?php if (has_post_thumbnail()) : ?>
+
+            <?php
+            the_post_thumbnail(
+                'medium',
+                array('class' => 'card-img-top')
+            );
+            ?>
+
+        <?php else : ?>
+
+            <div
+                class="card-img-top text-center py-5 bg-light"
+                style="font-size: 80px;"
+            >
+                🚜
             </div>
-            
-            <!-- Card 2 -->
-            <div class="col-12 col-sm-6 col-lg-3">
-                <div class="card h-100 shadow-sm">
-                    <div class="card-img-top text-center py-5 bg-light" style="font-size: 80px;">
-                        🏗️
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Башенный кран КБ-403</h5>
-                        <p class="card-text text-muted">Грузоподъемность: 8т</p>
-                        <p class="fw-bold text-success">от 4 800 ₽/час</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <span class="badge bg-warning text-dark">В наличии</span>
-                            <a href="#" class="btn btn-sm btn-outline-warning">Подробнее</a>
-                        </div>
-                    </div>
-                </div>
+
+        <?php endif; ?>
+
+        <div class="card-body">
+
+            <h5 class="card-title">
+                <?php the_title(); ?>
+            </h5>
+
+            <p class="card-text text-muted">
+                <?php echo esc_html(get_the_excerpt()); ?>
+            </p>
+
+            <?php if ($price !== '') : ?>
+
+                <p class="fw-bold text-success">
+                    от
+                    <?php echo esc_html(
+                        number_format_i18n((int) $price)
+                    ); ?>
+                    ₽/час
+                </p>
+
+            <?php endif; ?>
+
+            <div class="d-flex justify-content-between align-items-center">
+
+                <?php if ($availability !== '') : ?>
+
+                    <span class="badge bg-warning text-dark">
+                        <?php echo esc_html($availability); ?>
+                    </span>
+
+                <?php endif; ?>
+
+                <?php echo esc_url(get_permalink()); ?>                    class="btn btn-sm btn-outline-warning"
+                >
+                    Подробнее
+                </a>
+
             </div>
-            
-            <!-- Card 3 -->
-            <div class="col-12 col-sm-6 col-lg-3">
-                <div class="card h-100 shadow-sm">
-                    <div class="card-img-top text-center py-5 bg-light" style="font-size: 80px;">
-                        🚛
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Самосвал КамАЗ-6520</h5>
-                        <p class="card-text text-muted">Грузоподъемность: 20т</p>
-                        <p class="fw-bold text-success">от 3 200 ₽/час</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <span class="badge bg-warning text-dark">В наличии</span>
-                            <a href="#" class="btn btn-sm btn-outline-warning">Подробнее</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Card 4 -->
-            <div class="col-12 col-sm-6 col-lg-3">
-                <div class="card h-100 shadow-sm">
-                    <div class="card-img-top text-center py-5 bg-light" style="font-size: 80px;">
-                        🚧
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Бульдозер ДЗ-171</h5>
-                        <p class="card-text text-muted">Мощность: 180 л.с.</p>
-                        <p class="fw-bold text-success">от 5 000 ₽/час</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <span class="badge bg-success">Под заказ</span>
-                            <a href="#" class="btn btn-sm btn-outline-warning">Подробнее</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        </div>
+    </div>
+</div>
+
+<?php
+    endwhile;
+
+    wp_reset_postdata();
+
+else :
+?>
+
+<div class="col-12">
+    <p class="text-center">
+        Техника пока не добавлена.
+    </p>
+</div>
+
+<?php endif; ?>
         </div>
         
         <!-- View All Button -->
