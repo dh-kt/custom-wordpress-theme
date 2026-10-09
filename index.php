@@ -211,4 +211,147 @@ if (!$equipment_archive_url) {
                     if ($availability === 'В наличии') {
                         $badge_class = 'bg-success';
                     } elseif ($availability === 'Под заказ') {
-                        $
+                        $badge_class = 'bg-warning text-dark';
+                    } else {
+                        $badge_class = 'bg-secondary';
+                    }
+
+            ?>
+
+                    <div class="col-12 col-sm-6 col-lg-3">
+
+                        <div class="card h-100 shadow-sm">
+
+                            <?php if (has_post_thumbnail()) : ?>
+
+                                <?php
+                                the_post_thumbnail(
+                                    'medium',
+                                    array(
+                                        'class' => 'card-img-top',
+                                    )
+                                );
+                                ?>
+
+                            <?php else : ?>
+
+                                <div
+                                    class="card-img-top text-center py-5 bg-light"
+                                    style="font-size: 80px;"
+                                >
+                                    🚜
+                                </div>
+
+                            <?php endif; ?>
+
+                            <div class="card-body">
+
+                                <h5 class="card-title">
+                                    <?php the_title(); ?>
+                                </h5>
+
+                                <p class="card-text text-muted">
+                                    <?php
+                                    echo esc_html(
+                                        get_the_excerpt()
+                                    );
+                                    ?>
+                                </p>
+
+                                <?php if ($price !== '') : ?>
+
+                                    <p class="fw-bold text-success">
+                                        от
+                                        <?php
+                                        echo esc_html(
+                                            number_format_i18n(
+                                                (int) $price
+                                            )
+                                        );
+                                        ?>
+                                        ₽/час
+                                    </p>
+
+                                <?php endif; ?>
+
+                                <div
+                                    class="
+                                        d-flex
+                                        justify-content-between
+                                        align-items-center
+                                    "
+                                >
+
+                                    <?php if ($availability !== '') : ?>
+
+                                        <span
+                                            class="badge <?php
+                                            echo esc_attr(
+                                                $badge_class
+                                            );
+                                            ?>"
+                                        >
+                                            <?php
+                                            echo esc_html(
+                                                $availability
+                                            );
+                                            ?>
+                                        </span>
+
+                                    <?php endif; ?>
+
+                                                                            );
+                                        ?>"
+                                        class="
+                                            btn
+                                            btn-sm
+                                            btn-outline-warning
+                                        "
+                                    >
+                                        Подробнее
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+            <?php
+
+                endwhile;
+
+                wp_reset_postdata();
+
+            else :
+
+            ?>
+
+                <div class="col-12">
+                    <p class="text-center">
+                        Техника пока не добавлена.
+                    </p>
+                </div>
+
+            <?php endif; ?>
+
+        </div>
+
+        <!-- View All Equipment -->
+        <div class="text-center mt-5">
+
+             ?>"
+                class="btn btn-warning btn-lg"
+            >
+                Смотреть всю технику →
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<?php get_footer(); ?>
