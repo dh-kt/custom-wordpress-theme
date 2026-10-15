@@ -45,16 +45,17 @@
             <ul class="navbar-nav">
 
                 <li class="nav-item">
-                    <a
-                       
+                     ?>"
+                    >
                         Главная
                     </a>
                 </li>
+                </li>
 
                 <li class="nav-item">
-                    <a
-                        class="nav-link"
-            ог
+                     ?>"
+                    >
+                        Каталог
                     </a>
                 </li>
 
