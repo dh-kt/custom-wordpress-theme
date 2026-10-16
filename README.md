@@ -19,6 +19,7 @@ The project combines custom PHP theme development with responsive front-end desi
 - Equipment price and availability metadata
 - Dynamic equipment archive pages
 - REST API endpoint for equipment data
+- Python Flask webhook integration
 - Individual equipment pages
 - Carousel/slider functionality
 - WordPress-based content management
