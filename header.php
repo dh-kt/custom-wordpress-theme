@@ -66,37 +66,28 @@
                     </a>
                 </li>
             
-               <li class="nav-item">
-                    <a
-                        class="nav-link"
-                        href="<?php echo esc_url( get_post_type_archive_link( 'equipment' ) ); ?>"
-                    >
-                        Каталог
-                    </a>
-                </li>
-
                 <li class="nav-item">
-                    <a        Услуги
-                    </a>
-                </li>
+                        <a>
+                            Услуги
+                        </a>
+                    </li>
         
                 <li class="nav-item">
-                    <a class="Контакты">
-                    </a>
-                li>
-        </ul>
+                    <a> 
+                        Контакты
+                    </a> 
+                </li>
+            </ul>
 
             <!-- Right Side -->
             <div class="d-flex ms-auto">
 
-                <a
-                   +7 (999) 123-45-67
-                </a>
+                <a>
+                     +7 (999) 123-45-67
 
-                <a
-                   Заказать
+                <a>
+                    Заказать
                 </a>
-
             </div>
 
         </div>
