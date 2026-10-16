@@ -15,6 +15,10 @@ The project combines custom PHP theme development with responsive front-end desi
 - Custom WordPress theme development
 - Responsive navigation and page layout
 - Dynamic equipment catalog
+- Custom Equipment post type
+- Equipment price and availability metadata
+- Dynamic equipment archive pages
+- REST API endpoint for equipment data
 - Individual equipment pages
 - Carousel/slider functionality
 - WordPress-based content management
@@ -39,4 +43,9 @@ custom-wordpress-theme/
 ├── footer.php
 ├── index.php
 ├── style.css
-└── README.md
+├── README.md
+├── custom.css
+├── data.php
+├── functions.php
+└──webhook.py
+``
