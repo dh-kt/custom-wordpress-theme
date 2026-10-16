@@ -40,13 +40,14 @@ The project combines custom PHP theme development with responsive front-end desi
 
 ```text
 custom-wordpress-theme/
+├── functions.php
 ├── header.php
 ├── footer.php
 ├── index.php
 ├── style.css
-├── README.md
 ├── custom.css
 ├── data.php
-├── functions.php
-└──webhook.py
+├── webhook.py
+└── README.md
 ``
+
