@@ -8,11 +8,12 @@
 
     <!-- Bootstrap CSS -->
     <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
-        crossorigin="anonymous"
-    >
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+    crossorigin="anonymous"
+>
+
 
     <?php wp_head(); ?>
 </head>
@@ -67,13 +68,13 @@
                 </li>
             
                 <li class="nav-item">
-                        <a>
+                        <a class="nav-link" href="#">
                             Услуги
                         </a>
                     </li>
         
                 <li class="nav-item">
-                    <a> 
+                    <a class="nav-link" href="#"> 
                         Контакты
                     </a> 
                 </li>
@@ -82,10 +83,10 @@
             <!-- Right Side -->
             <div class="d-flex ms-auto">
 
-                <a>
+                <a href="#" class="btn btn-outline-warning me-2">
                      +7 (999) 123-45-67
                 </a>
-                <a>
+                <a href="#" class="btn btn--warning">
                     Заказать
                 </a>
             </div>
