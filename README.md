@@ -46,7 +46,6 @@ custom-wordpress-theme/
 ├── index.php
 ├── style.css
 ├── custom.css
-├── data.php
 ├── webhook.py
 └── README.md
 ``
