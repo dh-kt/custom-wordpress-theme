@@ -52,7 +52,9 @@ function my_spec_add_equipment_meta_boxes() {
 
 add_action('add_meta_boxes', 'my_spec_add_equipment_meta_boxes');
 
-
+/**
+* render fields 
+*/
 function my_spec_equipment_meta_box_callback($post) {
 
     wp_nonce_field(
@@ -254,3 +256,28 @@ function get_equipment_data() {
         'data' => $equipment_data
     ), 200);
 }
+
+/**
+ * Load theme stylesheets.
+ */
+function my_spec_enqueue_styles() {
+
+    wp_enqueue_style(
+        'theme-style',
+        get_stylesheet_uri(),
+        array(),
+        '1.0'
+    );
+
+    wp_enqueue_style(
+        'custom-css',
+        get_template_directory_uri() . '/custom.css',
+        array(),
+        '1.0'
+    );
+}
+
+add_action(
+    'wp_enqueue_scripts',
+    'my_spec_enqueue_styles'
+);
