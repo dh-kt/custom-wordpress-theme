@@ -86,7 +86,7 @@
                 <a href="#" class="btn btn-outline-warning me-2">
                      +7 (999) 123-45-67
                 </a>
-                <a href="#" class="btn btn--warning">
+                <a href="#" class="btn btn-warning">
                     Заказать
                 </a>
             </div>
