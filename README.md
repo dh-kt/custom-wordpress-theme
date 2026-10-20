@@ -11,6 +11,7 @@ The goal was to transform a static website design into a functional WordPress th
 The project combines custom PHP theme development with responsive front-end design.
 
 ##Live Demo
+
 Website: https://custom-wordpress-equipment.gamer.free.
 
 ## Key Features
